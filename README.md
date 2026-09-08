@@ -1,4 +1,4 @@
-# Viva Christo Rey Ministries
+# Viva Cristo Rey Ministries
 
 A lightweight static ministry website for Roisin Doherty, designed for GitHub Pages.
 
