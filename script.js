@@ -34,7 +34,7 @@ if (journeySection) {
   if (journeyHeading) {
     journeyHeading.insertAdjacentHTML('afterend', `
       <figure class="journey-photo reveal">
-        <img src="assets/ministry-community.webp" alt="A large prayer and formation group gathered in a circle" loading="lazy" decoding="async">
+        <img src="assets/ministry-community.webp" alt="A prayer and formation group gathered together" loading="lazy" decoding="async">
         <figcaption>Prayer, formation and community have remained at the heart of the work.</figcaption>
       </figure>
     `);
@@ -64,16 +64,16 @@ if (storiesSection && !document.querySelector('#artwork')) {
 
           <figure class="art-card reveal">
             <div class="art-card-image">
-              <img src="assets/art-martha-mary.webp" alt="Roisin's devotional painting of Martha and Mary" loading="lazy" decoding="async">
+              <img src="assets/art-marian.webp" alt="A Marian devotional painting by Roisin" loading="lazy" decoding="async">
             </div>
-            <figcaption><strong>Martha &amp; Mary</strong>One of Roisin's commissioned devotional paintings, bringing Scripture into a warm, domestic visual language.</figcaption>
+            <figcaption><strong>Marian devotional work</strong>One of Roisin's commissioned religious paintings, created for people in religious life and their families.</figcaption>
           </figure>
 
           <figure class="art-card reveal">
             <div class="art-card-image">
-              <img src="assets/art-john-paul.webp" alt="Roisin's devotional painting of Saint John Paul II" loading="lazy" decoding="async">
+              <img src="assets/art-st-john-paul-ii.webp" alt="Roisin's devotional painting of Saint John Paul II" loading="lazy" decoding="async">
             </div>
-            <figcaption><strong>St John Paul II</strong>A small commissioned devotional work from Roisin's earlier years of painting.</figcaption>
+            <figcaption><strong>St John Paul II</strong>A commissioned devotional work from Roisin's archive of religious paintings.</figcaption>
           </figure>
         </div>
         <p class="art-note reveal">Selected from Roisin's own archive of commissioned religious artwork.</p>
