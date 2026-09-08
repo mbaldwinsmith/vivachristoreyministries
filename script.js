@@ -6,13 +6,17 @@ const emberField = document.querySelector('[data-embers]');
 
 if (year) year.textContent = new Date().getFullYear();
 
-// Load the image-led extension styles without adding a framework or build step.
-if (!document.querySelector('link[href="gallery.css"]')) {
-  const galleryStyles = document.createElement('link');
-  galleryStyles.rel = 'stylesheet';
-  galleryStyles.href = 'gallery.css';
-  document.head.appendChild(galleryStyles);
-}
+// Load the image and responsive extension styles without a framework or build step.
+const ensureStylesheet = (href) => {
+  if (document.querySelector(`link[href="${href}"]`)) return;
+  const stylesheet = document.createElement('link');
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = href;
+  document.head.appendChild(stylesheet);
+};
+
+ensureStylesheet('gallery.css');
+ensureStylesheet('mobile.css');
 
 // Bring Roisin's own ministry photographs and devotional artwork into the page.
 const aboutSection = document.querySelector('#about');
@@ -114,20 +118,42 @@ setHeaderState();
 window.addEventListener('scroll', setHeaderState, { passive: true });
 
 if (menuToggle && nav) {
+  const menuLabel = menuToggle.querySelector('.sr-only');
+
+  const setMenuState = (open, restoreFocus = false) => {
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    if (menuLabel) menuLabel.textContent = open ? 'Close navigation' : 'Open navigation';
+    nav.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+
+    if (open) {
+      window.requestAnimationFrame(() => nav.querySelector('a')?.focus());
+    } else if (restoreFocus) {
+      menuToggle.focus();
+    }
+  };
+
   menuToggle.addEventListener('click', () => {
-    const open = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!open));
-    nav.classList.toggle('open', !open);
-    document.body.classList.toggle('menu-open', !open);
+    const open = menuToggle.getAttribute('aria-expanded') !== 'true';
+    setMenuState(open);
   });
 
   nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      nav.classList.remove('open');
-      document.body.classList.remove('menu-open');
-    });
+    link.addEventListener('click', () => setMenuState(false));
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+      setMenuState(false, true);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900 && menuToggle.getAttribute('aria-expanded') === 'true') {
+      setMenuState(false);
+    }
+  }, { passive: true });
 }
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
