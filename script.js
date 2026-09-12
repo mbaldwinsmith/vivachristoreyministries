@@ -26,6 +26,7 @@ if (menuToggle && nav) {
     if (menuLabel) menuLabel.textContent = open ? 'Close navigation' : 'Open navigation';
     nav.classList.toggle('open', open);
     document.body.classList.toggle('menu-open', open);
+    if (header) header.classList.toggle('menu-open', open);
 
     if (open) {
       window.requestAnimationFrame(() => nav.querySelector('a')?.focus());
