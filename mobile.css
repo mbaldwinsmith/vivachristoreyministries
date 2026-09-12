@@ -1,5 +1,5 @@
 /* Mobile and tablet refinements. Loaded after the core and gallery styles. */
-html{scroll-padding-top:calc(var(--scroll-padding, 66px) + env(safe-area-inset-top, 0px))}body{overflow-x:hidden}a,button{-webkit-tap-highlight-color:transparent}button{touch-action:manipulation}
+html{scroll-padding-top:calc(48px + env(safe-area-inset-top, 0px))}body{overflow-x:hidden}a,button{-webkit-tap-highlight-color:transparent}button{touch-action:manipulation}
 
 @media (max-width:900px){
   .wrap{width:min(720px,calc(100% - 2rem))}
@@ -93,7 +93,7 @@ html{scroll-padding-top:calc(var(--scroll-padding, 66px) + env(safe-area-inset-t
 }
 
 @media (max-width:640px){
-  html{scroll-padding-top:calc(var(--scroll-padding, 56px) + env(safe-area-inset-top, 0px))}
+  html{scroll-padding-top:calc(42px + env(safe-area-inset-top, 0px))}
   .wrap{width:calc(100% - 1.25rem)}
   .site-header{padding:max(.62rem,env(safe-area-inset-top)) .72rem .62rem}
   .site-header.scrolled{padding:max(.58rem,env(safe-area-inset-top)) .72rem .58rem}
