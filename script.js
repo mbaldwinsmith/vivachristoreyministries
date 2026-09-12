@@ -4,111 +4,10 @@ const nav = document.querySelector('[data-nav]');
 const year = document.querySelector('[data-year]');
 const emberField = document.querySelector('[data-embers]');
 
+// Dynamic footer copyright year
 if (year) year.textContent = new Date().getFullYear();
 
-// Load the image and responsive extension styles without a framework or build step.
-const ensureStylesheet = (href) => {
-  if (document.querySelector(`link[href="${href}"]`)) return;
-  const stylesheet = document.createElement('link');
-  stylesheet.rel = 'stylesheet';
-  stylesheet.href = href;
-  document.head.appendChild(stylesheet);
-};
-
-ensureStylesheet('gallery.css');
-ensureStylesheet('mobile.css');
-
-// Bring Roisin's own ministry photographs and devotional artwork into the page.
-const aboutSection = document.querySelector('#about');
-if (aboutSection) {
-  const aboutSplit = aboutSection.querySelector('.split-layout');
-  if (aboutSplit) {
-    aboutSplit.insertAdjacentHTML('afterend', `
-      <figure class="about-photo reveal">
-        <img src="assets/roisin-cfr-ministry.webp" alt="Roisin with a Franciscan Friar of the Renewal" loading="lazy" decoding="async">
-        <figcaption class="image-caption">Years of friendship, formation and ministry alongside the Franciscan Friars of the Renewal.</figcaption>
-      </figure>
-    `);
-  }
-}
-
-const journeySection = document.querySelector('#journey');
-if (journeySection) {
-  const journeyHeading = journeySection.querySelector('.section-heading-light');
-  if (journeyHeading) {
-    journeyHeading.insertAdjacentHTML('afterend', `
-      <figure class="journey-photo reveal">
-        <img src="assets/ministry-community.webp" alt="A prayer and formation group gathered together" loading="lazy" decoding="async">
-        <figcaption>Prayer, formation and community have remained at the heart of the work.</figcaption>
-      </figure>
-    `);
-  }
-}
-
-const storiesSection = document.querySelector('#stories');
-if (storiesSection && !document.querySelector('#artwork')) {
-  storiesSection.insertAdjacentHTML('beforebegin', `
-    <section id="artwork" class="section artwork-section" aria-labelledby="artwork-title">
-      <div class="wrap">
-        <div class="artwork-intro reveal">
-          <div class="section-heading">
-            <p class="eyebrow dark">Sacred artwork</p>
-            <h2 id="artwork-title">Prayer made visible.</h2>
-          </div>
-          <p>Alongside ministry, Roisin has painted commissioned devotional works for people in religious life and their families. The paintings are another expression of the same desire that animates the ministry: to draw the heart toward Christ, the saints and the life of prayer.</p>
-        </div>
-
-        <div class="artwork-grid">
-          <figure class="art-card featured reveal">
-            <div class="art-card-image">
-              <img src="assets/art-st-michael.webp" alt="Roisin's devotional painting of St Michael the Archangel" loading="lazy" decoding="async">
-            </div>
-            <figcaption><strong>St Michael the Archangel</strong>A commissioned prayer painting now held in a Franciscan friary in the United States.</figcaption>
-          </figure>
-
-          <figure class="art-card reveal">
-            <div class="art-card-image">
-              <img src="assets/art-marian.webp" alt="A Marian devotional painting by Roisin" loading="lazy" decoding="async">
-            </div>
-            <figcaption><strong>Marian devotional work</strong>One of Roisin's commissioned religious paintings, created for people in religious life and their families.</figcaption>
-          </figure>
-
-          <figure class="art-card reveal">
-            <div class="art-card-image">
-              <img src="assets/art-st-john-paul-ii.webp" alt="Roisin's devotional painting of Saint John Paul II" loading="lazy" decoding="async">
-            </div>
-            <figcaption><strong>St John Paul II</strong>A commissioned devotional work from Roisin's archive of religious paintings.</figcaption>
-          </figure>
-        </div>
-        <p class="art-note reveal">Selected from Roisin's own archive of commissioned religious artwork.</p>
-      </div>
-    </section>
-  `);
-
-  if (nav) {
-    const storiesLink = nav.querySelector('a[href="#stories"]');
-    if (storiesLink) storiesLink.insertAdjacentHTML('beforebegin', '<a href="#artwork">Artwork</a>');
-  }
-}
-
-const ministrySection = document.querySelector('#ministry');
-if (ministrySection && !document.querySelector('.prayer-image-section')) {
-  ministrySection.insertAdjacentHTML('beforebegin', `
-    <section class="prayer-image-section" aria-label="Christ at the centre">
-      <div class="prayer-image-grid">
-        <div class="prayer-image reveal">
-          <img src="assets/crucifix-prayer.webp" alt="A large wooden crucifix set among trees" loading="lazy" decoding="async">
-        </div>
-        <div class="prayer-image-copy reveal">
-          <p class="eyebrow">The centre of the ministry</p>
-          <blockquote>“Keep Christ at the centre.”</blockquote>
-          <p>Prayer, mission, healing and creativity only make sense when they lead beyond themselves to Jesus.</p>
-        </div>
-      </div>
-    </section>
-  `);
-}
-
+// Header scroll elevation
 const setHeaderState = () => {
   if (!header) return;
   header.classList.toggle('scrolled', window.scrollY > 24);
@@ -117,6 +16,7 @@ const setHeaderState = () => {
 setHeaderState();
 window.addEventListener('scroll', setHeaderState, { passive: true });
 
+// Mobile Navigation Drawer with Focus Management
 if (menuToggle && nav) {
   const menuLabel = menuToggle.querySelector('.sr-only');
 
@@ -143,9 +43,35 @@ if (menuToggle && nav) {
     link.addEventListener('click', () => setMenuState(false));
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+  // Close when clicking directly on the nav overlay background
+  nav.addEventListener('click', (event) => {
+    if (event.target === nav) {
       setMenuState(false, true);
+    }
+  });
+
+  // Accessible keyboard trap and Escape key handling
+  document.addEventListener('keydown', (event) => {
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    if (!isOpen) return;
+
+    if (event.key === 'Escape') {
+      setMenuState(false, true);
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const focusable = [menuToggle, ...nav.querySelectorAll('a')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 
@@ -156,6 +82,65 @@ if (menuToggle && nav) {
   }, { passive: true });
 }
 
+// Sacred Artwork Modal Lightbox
+const lightbox = document.querySelector('#artwork-lightbox');
+if (lightbox) {
+  const lightboxImg = lightbox.querySelector('#lightbox-img');
+  const lightboxTitle = lightbox.querySelector('#lightbox-title');
+  const lightboxDesc = lightbox.querySelector('#lightbox-desc');
+  const closeBtn = lightbox.querySelector('[data-lightbox-close]');
+  let lastFocusedElement = null;
+
+  const artworkTriggers = document.querySelectorAll('[data-artwork-trigger]');
+
+  artworkTriggers.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      lastFocusedElement = btn;
+      const title = btn.getAttribute('data-title') || '';
+      const desc = btn.getAttribute('data-desc') || '';
+      const img = btn.getAttribute('data-img') || '';
+      const alt = btn.getAttribute('data-alt') || title;
+
+      if (lightboxImg) {
+        lightboxImg.src = img;
+        lightboxImg.alt = alt;
+      }
+      if (lightboxTitle) lightboxTitle.textContent = title;
+      if (lightboxDesc) lightboxDesc.textContent = desc;
+
+      if (typeof lightbox.showModal === 'function') {
+        lightbox.showModal();
+      } else {
+        lightbox.setAttribute('open', '');
+      }
+      closeBtn?.focus();
+    });
+  });
+
+  const closeLightbox = () => {
+    if (typeof lightbox.close === 'function') {
+      lightbox.close();
+    } else {
+      lightbox.removeAttribute('open');
+    }
+    lastFocusedElement?.focus();
+  };
+
+  closeBtn?.addEventListener('click', closeLightbox);
+
+  // Close when clicking outside on dialog backdrop
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  lightbox.addEventListener('close', () => {
+    lastFocusedElement?.focus();
+  });
+}
+
+// Ember particle animation
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!prefersReducedMotion && emberField) {
@@ -179,6 +164,7 @@ if (!prefersReducedMotion && emberField) {
   emberField.appendChild(fragment);
 }
 
+// Scroll reveal animations
 const revealItems = document.querySelectorAll('.reveal');
 
 if ('IntersectionObserver' in window && !prefersReducedMotion) {

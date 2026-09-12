@@ -8,6 +8,8 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#173c2c">
   <link rel="canonical" href="https://vivacristoreyministries.com/">
+  <link rel="icon" type="image/png" href="assets/vcr-logo-full-transparent.png">
+  <link rel="apple-touch-icon" href="assets/vcr-logo-full-transparent.png">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Viva Cristo Rey Ministries">
@@ -27,6 +29,8 @@
   <meta name="twitter:image:alt" content="Viva Cristo Rey Ministries — the ministry of Roisin Doherty">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="mobile.css">
   <script defer src="script.js"></script>
 
   <script type="application/ld+json">
@@ -42,6 +46,17 @@
         "inLanguage": "en"
       },
       {
+        "@type": "ReligiousOrganization",
+        "@id": "https://vivacristoreyministries.com/#organization",
+        "name": "Viva Cristo Rey Ministries",
+        "url": "https://vivacristoreyministries.com/",
+        "logo": "https://vivacristoreyministries.com/assets/vcr-logo-full-transparent.png",
+        "founder": {
+          "@id": "https://vivacristoreyministries.com/#roisin-doherty"
+        },
+        "description": "Catholic prayer, healing, retreats, speaking, discipleship and evangelisation with Roisin Doherty."
+      },
+      {
         "@type": "Person",
         "@id": "https://vivacristoreyministries.com/#roisin-doherty",
         "name": "Roisin Doherty",
@@ -54,7 +69,8 @@
           "Retreats",
           "Evangelisation",
           "Discipleship",
-          "Pilgrimage"
+          "Pilgrimage",
+          "Sacred artwork"
         ]
       }
     ]
@@ -66,6 +82,9 @@
 
   <header class="site-header" data-header>
     <a class="brand" href="#top" aria-label="Viva Cristo Rey Ministries home">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="assets/vcr-logo-full-transparent.png" alt="" width="42" height="42">
+      </span>
       <span class="brand-text">
         <strong>Viva Cristo Rey</strong>
         <small>Ministries</small>
@@ -80,6 +99,7 @@
     <nav id="site-nav" class="site-nav" aria-label="Primary navigation" data-nav>
       <a href="#about">About</a>
       <a href="#journey">Journey</a>
+      <a href="#artwork">Artwork</a>
       <a href="#stories">Stories of Grace</a>
       <a href="#ministry">Ministry</a>
       <a href="#invite">Invite Roisin</a>
@@ -128,6 +148,11 @@
         </div>
       </div>
 
+      <figure class="about-photo reveal">
+        <img src="assets/roisin-cfr-ministry.webp" alt="Roisin with a Franciscan Friar of the Renewal" width="1200" height="900" loading="lazy" decoding="async">
+        <figcaption class="image-caption">Years of friendship, formation and ministry alongside the Franciscan Friars of the Renewal.</figcaption>
+      </figure>
+
       <div class="wrap values-grid" aria-label="Ministry values">
         <article class="value-card reveal">
           <span class="value-symbol" aria-hidden="true">✺</span>
@@ -154,6 +179,11 @@
           <h2>Formed in prayer. Sent in mission.</h2>
           <p>A growing story of service across Ireland, Northern Ireland and beyond.</p>
         </div>
+
+        <figure class="journey-photo reveal">
+          <img src="assets/ministry-community.webp" alt="A prayer and formation group gathered together" width="1400" height="638" loading="lazy" decoding="async">
+          <figcaption>Prayer, formation and community have remained at the heart of the work.</figcaption>
+        </figure>
 
         <div class="timeline" aria-label="Roisin Doherty ministry timeline">
           <article class="timeline-item reveal">
@@ -239,6 +269,51 @@
       </div>
     </section>
 
+    <section id="artwork" class="section artwork-section" aria-labelledby="artwork-title">
+      <div class="wrap">
+        <div class="artwork-intro reveal">
+          <div class="section-heading">
+            <p class="eyebrow dark">Sacred artwork</p>
+            <h2 id="artwork-title">Prayer made visible.</h2>
+          </div>
+          <p>Alongside ministry, Roisin has painted commissioned devotional works for people in religious life and their families. The paintings are another expression of the same desire that animates the ministry: to draw the heart toward Christ, the saints and the life of prayer.</p>
+        </div>
+
+        <div class="artwork-grid">
+          <figure class="art-card featured reveal">
+            <button type="button" class="art-card-btn" aria-haspopup="dialog" aria-label="View larger image: St Michael the Archangel" data-artwork-trigger data-title="St Michael the Archangel" data-desc="A commissioned prayer painting now held in a Franciscan friary in the United States." data-img="assets/art-st-michael.webp" data-alt="Roisin's devotional painting of St Michael the Archangel">
+              <div class="art-card-image">
+                <img src="assets/art-st-michael.webp" alt="Roisin's devotional painting of St Michael the Archangel" width="758" height="568" loading="lazy" decoding="async">
+                <span class="art-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg> View</span>
+              </div>
+            </button>
+            <figcaption><strong>St Michael the Archangel</strong>A commissioned prayer painting now held in a Franciscan friary in the United States.</figcaption>
+          </figure>
+
+          <figure class="art-card reveal">
+            <button type="button" class="art-card-btn" aria-haspopup="dialog" aria-label="View larger image: Marian devotional work" data-artwork-trigger data-title="Marian devotional work" data-desc="One of Roisin's commissioned religious paintings, created for people in religious life and their families." data-img="assets/art-marian.webp" data-alt="A Marian devotional painting by Roisin">
+              <div class="art-card-image">
+                <img src="assets/art-marian.webp" alt="A Marian devotional painting by Roisin" width="463" height="568" loading="lazy" decoding="async">
+                <span class="art-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg> View</span>
+              </div>
+            </button>
+            <figcaption><strong>Marian devotional work</strong>One of Roisin's commissioned religious paintings, created for people in religious life and their families.</figcaption>
+          </figure>
+
+          <figure class="art-card reveal">
+            <button type="button" class="art-card-btn" aria-haspopup="dialog" aria-label="View larger image: St John Paul II" data-artwork-trigger data-title="St John Paul II" data-desc="A commissioned devotional work from Roisin's archive of religious paintings." data-img="assets/art-st-john-paul-ii.webp" data-alt="Roisin's devotional painting of Saint John Paul II">
+              <div class="art-card-image">
+                <img src="assets/art-st-john-paul-ii.webp" alt="Roisin's devotional painting of Saint John Paul II" width="574" height="568" loading="lazy" decoding="async">
+                <span class="art-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg> View</span>
+              </div>
+            </button>
+            <figcaption><strong>St John Paul II</strong>A commissioned devotional work from Roisin's archive of religious paintings.</figcaption>
+          </figure>
+        </div>
+        <p class="art-note reveal">Selected from Roisin's own archive of commissioned religious artwork.</p>
+      </div>
+    </section>
+
     <section id="stories" class="section stories-section">
       <div class="wrap">
         <div class="section-heading centered reveal">
@@ -269,6 +344,19 @@
         </div>
 
         <p class="testimony-note reveal">Testimonies are not presented as medical evidence or guarantees of outcome. They are personal accounts of faith and prayer, shared to give thanks to God.</p>
+      </div>
+    </section>
+
+    <section class="prayer-image-section" aria-label="Christ at the centre">
+      <div class="prayer-image-grid">
+        <div class="prayer-image reveal">
+          <img src="assets/crucifix-prayer.webp" alt="A large wooden crucifix set among trees" width="1100" height="1467" loading="lazy" decoding="async">
+        </div>
+        <div class="prayer-image-copy reveal">
+          <p class="eyebrow">The centre of the ministry</p>
+          <blockquote>“Keep Christ at the centre.”</blockquote>
+          <p>Prayer, mission, healing and creativity only make sense when they lead beyond themselves to Jesus.</p>
+        </div>
       </div>
     </section>
 
@@ -346,11 +434,28 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <a class="brand footer-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/vcr-logo-full-transparent.png" alt="" width="34" height="34">
+        </span>
         <span class="brand-text"><strong>Viva Cristo Rey</strong><small>Ministries</small></span>
       </a>
       <p>Jesus Christ, King of every heart.</p>
       <p class="copyright">© <span data-year></span> Viva Cristo Rey Ministries</p>
     </div>
   </footer>
+  <dialog id="artwork-lightbox" class="artwork-lightbox" aria-labelledby="lightbox-title">
+    <div class="artwork-lightbox-inner">
+      <div class="artwork-lightbox-header">
+        <button type="button" class="lightbox-close-btn" aria-label="Close dialog" data-lightbox-close>✕</button>
+      </div>
+      <div class="artwork-lightbox-stage">
+        <img id="lightbox-img" src="" alt="" width="800" height="600">
+      </div>
+      <div class="artwork-lightbox-caption">
+        <strong id="lightbox-title"></strong>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+  </dialog>
 </body>
 </html>
