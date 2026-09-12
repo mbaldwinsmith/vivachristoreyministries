@@ -7,14 +7,28 @@ const emberField = document.querySelector('[data-embers]');
 // Dynamic footer copyright year
 if (year) year.textContent = new Date().getFullYear();
 
-// Header scroll elevation
+// Header scroll elevation & flush scroll-padding synchronization
+const updateScrollPadding = () => {
+  if (!header) return;
+  const isScrolled = header.classList.contains('scrolled');
+  if (!isScrolled) header.classList.add('scrolled');
+  const height = header.offsetHeight;
+  if (!isScrolled) header.classList.remove('scrolled');
+  if (height > 0) {
+    // Target 1px under navbar so subpixel rendering never exposes a hairline gap
+    document.documentElement.style.setProperty('--scroll-padding', `${height - 1}px`);
+  }
+};
+
 const setHeaderState = () => {
   if (!header) return;
   header.classList.toggle('scrolled', window.scrollY > 24);
 };
 
 setHeaderState();
+updateScrollPadding();
 window.addEventListener('scroll', setHeaderState, { passive: true });
+window.addEventListener('resize', updateScrollPadding, { passive: true });
 
 // Mobile Navigation Drawer with Focus Management
 if (menuToggle && nav) {
